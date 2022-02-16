@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-6xl font-bold text-teal-400;
+  }
+  h2 {
+    @apply text-4xl
+  }
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  @apply mb-1
+}
+
+.til::before {
+  @apply content-['TIL'] fixed bottom-0 right-[5%] text-[50rem] font-bold text-teal-400 dark:text-opacity-[0.02] text-opacity-5 leading-[50rem] z-[-1];
+}
+
+.js-emoji {
+  position: relative;
+}
+
+.js-emoji:not(:empty)::after {
+  content: 'JS';
+  position: absolute;
+  bottom: 2px;
+  color: black;
+  right: 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 0.7rem;
+}
+
+.animated-background svg path {
+  @apply fill-teal-400 stroke-teal-400 dark:opacity-[0.05] opacity-10;
+}

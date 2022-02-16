@@ -1,0 +1,5 @@
+@import url('../fonts/Fira_code/fira_code.css');
+
+html, pre {
+  font-family: 'Fira Code';
+}
