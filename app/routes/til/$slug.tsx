@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import { ActionFunction, json, redirect, useLoaderData } from 'remix';
-import type { LoaderFunction, LinksFunction } from 'remix';
+import type { LoaderFunction, LinksFunction, HeadersFunction } from 'remix';
 import invariant from 'tiny-invariant';
 import hljsStyle from 'highlight.js/styles/github-dark.css';
 import { getPost } from '~/api/posts';
@@ -42,6 +42,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     {
       headers: {
         'Set-Cookie': await commitSession(session),
+        'Cache-Control': `max-age=60`,
       },
     },
   );
@@ -76,6 +77,15 @@ export const action: ActionFunction = async ({ request, params }) => {
       'Set-Cookie': await commitSession(session),
     },
   });
+};
+
+export const headers: HeadersFunction = ({ loaderHeaders }) => {
+  const loaderCacheControl = loaderHeaders.get('Cache-Control');
+  invariant(loaderCacheControl, 'loaderHeaders Cache-Control is required');
+
+  return {
+    'Cache-Control': loaderCacheControl,
+  };
 };
 
 export default function PostSlug() {

@@ -1,4 +1,7 @@
-import { Outlet } from 'remix';
+import { LoaderFunction, Outlet } from 'remix';
+
+// TODO : Remove this once issue #1140 is resolved
+export const loader: LoaderFunction = () => null;
 
 function Til() {
   return (
